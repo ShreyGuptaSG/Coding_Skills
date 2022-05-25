@@ -1,0 +1,23 @@
+## SQL notes
+
+#JOINS 
+Select date(payment_date), customer.customer_id, email, amount
+from customer
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id
+ORDER BY customer_id
+
+
+# Create TABLE
+CREATE TABLE NSW_electricity_consumption(
+REGEION varchar(255), SETTLEMENTDATE,TOTALDEMAND,RRP PERIODTYPE
+ )
+\PRICE_AND_DEMAND_201507_NSW1
+
+GROUP BY 
+Select date(payment_date), customer.customer_id, email, sum(amount)
+from customer
+group by customer.customer_id, email, date(payment_date)
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id
+ORDER BY customer_id
