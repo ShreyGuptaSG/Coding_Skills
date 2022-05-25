@@ -9,11 +9,20 @@ ORDER BY customer_id
 
 ## TWO JOINS
 SELECT DISTINCT title, first_name, last_name from ((film
-LEFT JOIN film_actor
+INNER JOIN film_actor
 ON film.film_id = film_actor.film_id)
-LEFT JOIN actor
+INNER JOIN actor
 ON film_actor.actor_id = actor.actor_id)
 WHERE first_name = 'Nick' AND last_name = 'Wahlberg'
+
+## CSubQuery with Two joins
+SELECT title 
+FROM ((inventory
+INNER JOIN film 
+ON film.film_id = inventory.film_id)
+INNER JOIN rental
+ON inventory.inventory_id = rental.inventory_id)
+WHERE rental_date BETWEEN '2005-05-29' AND '2005-05-30' 
 
 
 # Create TABLE
@@ -29,3 +38,15 @@ group by customer.customer_id, email, date(payment_date)
 INNER JOIN payment
 ON customer.customer_id = payment.customer_id
 ORDER BY customer_id
+
+
+## DATE
+show TIMEZONE
+SELECT NOW()
+SELECT TIMEOFDAY()
+SELECT CURRENT_TIME
+SELECT CURRENT_DATE
+
+SELECT COUNT(*), sum(amount)
+FROM payment
+WHERE TO_CHAR(payment_date, 'FMDay')= 'Monday'
