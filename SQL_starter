@@ -7,6 +7,14 @@ INNER JOIN payment
 ON customer.customer_id = payment.customer_id
 ORDER BY customer_id
 
+## TWO JOINS
+SELECT DISTINCT title, first_name, last_name from ((film
+LEFT JOIN film_actor
+ON film.film_id = film_actor.film_id)
+LEFT JOIN actor
+ON film_actor.actor_id = actor.actor_id)
+WHERE first_name = 'Nick' AND last_name = 'Wahlberg'
+
 
 # Create TABLE
 CREATE TABLE NSW_electricity_consumption(
