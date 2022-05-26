@@ -84,6 +84,21 @@ INSERT INTO teachers(first_name, last_name, homeroom_number, department, email, 
 VALUES 
 ('Jonas','Salk','5' , 'Biology', 'jsalk@school.org', '777-555-4321')
 
+## CASE
+select 
+SUM(CASE rating
+	WHEN 'R' THEN 1
+	ELSE 0
+	END),
+SUM(CASE rating
+	WHEN 'PG' THEN 1
+	ELSE 0
+	END),
+SUM(CASE rating
+	WHEN 'PG-13' THEN 1
+	ELSE 0
+END)
+FROM film
 ## DATE
 show TIMEZONE
 SELECT NOW()
@@ -93,4 +108,41 @@ SELECT CURRENT_DATE
 
 SELECT COUNT(*), sum(amount)
 FROM payment
-WHERE TO_CHAR(payment_date, 'FMDay')= 'Monday'
+WHERE TO_CHAR(payment_date, 'FMDay')= 'Monday')
+
+
+
+### EXAMPLE
+SELECT * FROM cd.facilities
+SELECT * FROM cd.bookings
+SELECT * FROM cd.members
+
+SELECT name, membercost FROM cd.facilities
+
+SELECT * FROM cd.facilities WHERE membercost !=0 AND membercost < monthlymaintenance/50
+SELECT * FROM cd.facilities WHERE name LIKE '%Tennis%'
+SELECT * FROM cd.facilities WHERE facid IN (1,5)
+SELECT * FROM cd.members WHERE joindate > '2012-09-01 00:00:00'
+SELECT DISTINCT surname FROM cd.members ORDER BY surname ASC limit 10 
+SELECT joindate FROM cd.members ORDER BY memid DESC
+SELECT COUNT(*) FROM cd.facilities WHERE guestcost >= 10
+SELECT facid, SUM(slots) FROM cd.bookings
+    WHERE starttime > '2012-09-01 00:00:00'
+	GROUP BY facid
+SELECT facid, SUM(slots) FROM cd.bookings
+	GROUP BY facid
+	HAVING SUM(slots)  > 1000
+
+SELECT name, starttime FROM cd.bookings
+INNER JOIN cd.facilities
+ON cd.bookings.facid = cd.facilities.facid
+WHERE name LIKE '%Tennis C%'AND starttime BETWEEN '2012-09-21 00:00:00' AND '2012-09-21 23:59:59'
+ORDER BY starttime ASC
+
+SELECT firstname, surname, starttime FROM cd.members
+INNER JOIN cd.bookings
+ON cd.members.memid = cd.bookings.memid
+WHERE cd.members.firstname='David' 
+AND cd.members.surname='Farrell';
+
+
