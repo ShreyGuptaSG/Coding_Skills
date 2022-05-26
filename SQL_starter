@@ -15,7 +15,12 @@ INNER JOIN actor
 ON film_actor.actor_id = actor.actor_id)
 WHERE first_name = 'Nick' AND last_name = 'Wahlberg'
 
-## CSubQuery with Two joins
+## SubQuery
+SELECT student.grade
+FROM test_scores
+WHERE grade > (SELECT AVG(grade) FROM test_scores)
+
+### USING SubQuery with JOIN
 SELECT title 
 FROM ((inventory
 INNER JOIN film 
@@ -24,12 +29,32 @@ INNER JOIN rental
 ON inventory.inventory_id = rental.inventory_id)
 WHERE rental_date BETWEEN '2005-05-29' AND '2005-05-30' 
 
+#OR 
+SELECT film_id, title 
+FROM film
+WHERE film_id IN
+(SELECT inventory.film_id 
+FROM rental
+INNER JOIN inventory
+ON inventory.inventory_id = rental.inventory_id
+WHERE rental_date BETWEEN '2005-05-29' AND '2005-05-30')
 
-# Create TABLE
-CREATE TABLE NSW_electricity_consumption(
-REGEION varchar(255), SETTLEMENTDATE,TOTALDEMAND,RRP PERIODTYPE
- )
-\PRICE_AND_DEMAND_201507_NSW1
+## WHERE EXISTS
+SELECT first_name, last_name, sum(amount)
+FROM customer as c
+INNER JOIN payment as p
+ON c.customer_id = p.customer_id 
+WHERE EXISTS
+(	SELECT * 
+	FROM payment as p
+	WHERE p.customer_id = c.customer_id AND amount > 11)
+GROUP BY first_name, last_name
+
+#self JOIN
+SELECT f1.title, f2.title, f1.length 
+FROM film as f1
+INNER JOIN film as f2
+ON f1.film_id != f2.film_id AND f1.length = f2.length
 
 GROUP BY 
 Select date(payment_date), customer.customer_id, email, sum(amount)
@@ -38,6 +63,11 @@ group by customer.customer_id, email, date(payment_date)
 INNER JOIN payment
 ON customer.customer_id = payment.customer_id
 ORDER BY customer_id
+
+# Create TABLE
+CREATE TABLE NSW_electricity_consumption(
+REGEION varchar(255), SETTLEMENTDATE,TOTALDEMAND,RRP PERIODTYPE
+ )
 
 
 ## DATE
