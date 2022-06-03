@@ -164,6 +164,45 @@ Note that there were more participant Ids in the daily activity dataset that hav
 Now you can explore some different relationships between activity and sleep as well. For example,
 do you think participants who sleep more also take more steps or fewer steps per day? Is there a relationship at all? How could these answers help inform the marketing strategy of how you position this new product
   This is just one example of how to get started with this data - there are many other files and questions to explore as well!
+  
+  ########
+  install.packages('lubridate')
+install.packages('tidyverse')
+install.packages('ggplot2')
+library(tidyverse)  #helps wrangle data
+library(lubridate)  #helps wrangle date attributes
+library(ggplot2)  #helps visualize data
+#=====================
+# STEP 1: COLLECT DATA
+#=====================
+# Upload NSW APDD datasets (csv files) here
+NSW_JULY_2015_APDD <- read_csv("NSW_JULY_2015_APDD.csv")
+NSW_2016_APDD  <- read_csv("NSW_2016_APDD.csv")
+NSW_2017_APDD <- read_csv("NSW_2017_APDD.csv")
+NSW_2018_APDD <- read_csv("NSW_2018_APDD.csv")
+NSW_2019_APDD <- read_csv("NSW_2019_APDD.csv")
+NSW_2020_APDD <- read_csv("NSW_2020_APDD.csv")
+NSW_2021_JUNE_APDD <- read_csv("NSW_JUNE_2021_APDD.csv")
+
+str(NSW_2016_APDD)
+
+#BINDING ROWA
+NSW_PMD <- bind_rows(NSW_JULY_2015_APDD, NSW_2016_APDD, NSW_2017_APDD, NSW_2018_APDD, NSW_2019_APDD, NSW_2020_APDD, NSW_2021_JUNE_APDD)
+
+#======================================================
+# STEP 3: CLEAN UP AND ADD DATA TO PREPARE FOR ANALYSIS
+#======================================================
+# Inspect the new table that has been created
+colnames(NSW_PMD)  #List of column names
+nrow(NSW_PMD)  #How many rows are in data frame?
+dim(NSW_PMD)  #Dimensions of the data frame?
+head(NSW_PMD)  #See the first 6 rows of data frame.  Also tail(all_trips)
+str(NSW_PMD)  #See list of columns and data types (numeric, character, etc)
+summary(NSW_PMD)  #Statistical summary of data. Mainly for numerics
+
+NSW_PMD$SETTLEMENTDATE <- as.Date(NSW_PMD$SETTLEMENTDATE, "%d/%m/%Y")
+write.csv(NSW_PMD, file = "NSW_PMD.csv")
+
 
     
     
