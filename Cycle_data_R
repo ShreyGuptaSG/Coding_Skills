@@ -148,6 +148,250 @@ ggplot(data=sleep_day, aes(x=TotalMinutesAsleep, y=TotalTimeInBed)) + geom_point
 What could these trends tell you about how to help market this product? Or areas where you might want to explore further?
   
   ## Merging these two datasets together
+  install.packages('lubridate')
+install.packages('tidyverse')
+install.packages('ggplot2')
+library(tidyverse)  #helps wrangle data
+library(lubridate)  #helps wrangle date attributes
+library(ggplot2)  #helps visualize data
+library(tibble)
+#=====================
+# STEP 1: COLLECT DATA
+#=====================
+# Upload NSW APDD datasets (csv files) here
+NSW_JULY_2015_APDD <- read_csv("NSW_JULY_2015_APDD.csv")
+NSW_2016_APDD  <- read_csv("NSW_2016_APDD.csv")
+NSW_2017_APDD <- read_csv("NSW_2017_APDD.csv")
+NSW_2018_APDD <- read_csv("NSW_2018_APDD.csv")
+NSW_2019_APDD <- read_csv("NSW_2019_APDD.csv")
+NSW_2020_APDD <- read_csv("NSW_2020_APDD.csv")
+NSW_2021_JUNE_APDD <- read_csv("NSW_JUNE_2021_APDD.csv")
+
+NSW_PMD <- bind_rows(             NSW_JULY_2015_APDD ,
+                                  NSW_2016_APDD,  
+                                  NSW_2017_APDD, 
+                                  NSW_2018_APDD ,
+                                  NSW_2019_APDD ,
+                                  NSW_2020_APDD, 
+                                  NSW_2021_JUNE_APDD)
+
+## SA
+#2015
+SA_201507 <- read_csv("PRICE_AND_DEMAND_201507_SA1.csv")
+SA_201508  <- read_csv("PRICE_AND_DEMAND_201508_SA1.csv")
+SA_201509  <- read_csv("PRICE_AND_DEMAND_201509_SA1.csv")
+SA_201510  <- read_csv("PRICE_AND_DEMAND_201510_SA1.csv")
+SA_201511  <- read_csv("PRICE_AND_DEMAND_201511_SA1.csv")
+SA_201512  <- read_csv("PRICE_AND_DEMAND_201512_SA1.csv")
+SA_2015 <- bind_rows(                     SA_201507,
+                                          SA_201508, 
+                                          SA_201509, 
+                                          SA_201510, 
+                                          SA_201511, 
+                                          SA_201512)
+
+write.csv(SA_2015, file = "SA_2015_JUNE.csv")
+#2016 
+SA_201601 <- read_csv("PRICE_AND_DEMAND_201601_SA1.csv")
+SA_201602 <- read_csv("PRICE_AND_DEMAND_201602_SA1.csv")
+SA_201603 <- read_csv("PRICE_AND_DEMAND_201603_SA1.csv")
+SA_201604  <- read_csv("PRICE_AND_DEMAND_201604_SA1.csv")
+SA_201605  <- read_csv("PRICE_AND_DEMAND_201605_SA1.csv")
+SA_201606 <- read_csv("PRICE_AND_DEMAND_201606_SA1.csv")
+SA_201607 <- read_csv("PRICE_AND_DEMAND_201607_SA1.csv")
+SA_201608  <- read_csv("PRICE_AND_DEMAND_201608_SA1.csv")
+SA_201609  <- read_csv("PRICE_AND_DEMAND_201609_SA1.csv")
+SA_201610  <- read_csv("PRICE_AND_DEMAND_201610_SA1.csv")
+SA_201611  <- read_csv("PRICE_AND_DEMAND_201611_SA1.csv")
+SA_201612  <- read_csv("PRICE_AND_DEMAND_201612_SA1.csv")
+
+
+
+SA_2016 <- bind_rows(SA_201601,
+                     SA_201602,
+                     SA_201603,
+                     SA_201604, 
+                     SA_201605, 
+                     SA_201606,
+                     SA_201607,
+                     SA_201608, 
+                     SA_201609, 
+                     SA_201610, 
+                     SA_201611, 
+                     SA_201612)
+#2017 
+SA_201701 <- read_csv("PRICE_AND_DEMAND_201701_SA1.csv")
+SA_201702 <- read_csv("PRICE_AND_DEMAND_201702_SA1.csv")
+SA_201703 <- read_csv("PRICE_AND_DEMAND_201703_SA1.csv")
+SA_201704  <- read_csv("PRICE_AND_DEMAND_201704_SA1.csv")
+SA_201705  <- read_csv("PRICE_AND_DEMAND_201705_SA1.csv")
+SA_201706 <- read_csv("PRICE_AND_DEMAND_201706_SA1.csv")
+SA_201707 <- read_csv("PRICE_AND_DEMAND_201707_SA1.csv")
+SA_201708  <- read_csv("PRICE_AND_DEMAND_201708_SA1.csv")
+SA_201709  <- read_csv("PRICE_AND_DEMAND_201709_SA1.csv")
+SA_201710  <- read_csv("PRICE_AND_DEMAND_201710_SA1.csv")
+SA_201711  <- read_csv("PRICE_AND_DEMAND_201711_SA1.csv")
+SA_201712  <- read_csv("PRICE_AND_DEMAND_201712_SA1.csv")
+
+
+
+SA_2017 <- bind_rows(SA_201701,
+                     SA_201702,
+                     SA_201703,
+                     SA_201704, 
+                     SA_201705, 
+                     SA_201706,
+                     SA_201707,
+                     SA_201708, 
+                     SA_201709, 
+                     SA_201710, 
+                     SA_201711, 
+                     SA_201712)
+write.csv(SA_2017, file = "SA_2017.csv")
+#2018 
+SA_201801 <- read_csv("PRICE_AND_DEMAND_201801_SA1.csv")
+SA_201802 <- read_csv("PRICE_AND_DEMAND_201802_SA1.csv")
+SA_201803 <- read_csv("PRICE_AND_DEMAND_201803_SA1.csv")
+SA_201804  <- read_csv("PRICE_AND_DEMAND_201804_SA1.csv")
+SA_201805  <- read_csv("PRICE_AND_DEMAND_201805_SA1.csv")
+SA_201806 <- read_csv("PRICE_AND_DEMAND_201806_SA1.csv")
+SA_201807 <- read_csv("PRICE_AND_DEMAND_201807_SA1.csv")
+SA_201808  <- read_csv("PRICE_AND_DEMAND_201808_SA1.csv")
+SA_201809  <- read_csv("PRICE_AND_DEMAND_201809_SA1.csv")
+SA_201810  <- read_csv("PRICE_AND_DEMAND_201810_SA1.csv")
+SA_201811  <- read_csv("PRICE_AND_DEMAND_201811_SA1.csv")
+SA_201812  <- read_csv("PRICE_AND_DEMAND_201812_SA1.csv")
+
+
+
+SA_2018 <- bind_rows(SA_201801,
+                     SA_201802,
+                     SA_201803,
+                     SA_201804, 
+                     SA_201805, 
+                     SA_201806,
+                     SA_201807,
+                     SA_201808, 
+                     SA_201809, 
+                     SA_201810, 
+                     SA_201811, 
+                     SA_201812)
+write.csv(SA_2018, file = "SA_2018.csv")
+#2019 
+SA_201901 <- read_csv("PRICE_AND_DEMAND_201901_SA1.csv")
+SA_201902 <- read_csv("PRICE_AND_DEMAND_201902_SA1.csv")
+SA_201903 <- read_csv("PRICE_AND_DEMAND_201903_SA1.csv")
+SA_201904  <- read_csv("PRICE_AND_DEMAND_201904_SA1.csv")
+SA_201905  <- read_csv("PRICE_AND_DEMAND_201905_SA1.csv")
+SA_201906 <- read_csv("PRICE_AND_DEMAND_201906_SA1.csv")
+SA_201907 <- read_csv("PRICE_AND_DEMAND_201907_SA1.csv")
+SA_201908  <- read_csv("PRICE_AND_DEMAND_201908_SA1.csv")
+SA_201909  <- read_csv("PRICE_AND_DEMAND_201909_SA1.csv")
+SA_201910  <- read_csv("PRICE_AND_DEMAND_201910_SA1.csv")
+SA_201911  <- read_csv("PRICE_AND_DEMAND_201911_SA1.csv")
+SA_201912  <- read_csv("PRICE_AND_DEMAND_201912_SA1.csv")
+
+
+
+SA_2019 <- bind_rows(SA_201901,
+                     SA_201902,
+                     SA_201903,
+                     SA_201904, 
+                     SA_201905, 
+                     SA_201906,
+                     SA_201907,
+                     SA_201908, 
+                     SA_201909, 
+                     SA_201910, 
+                     SA_201911, 
+                     SA_201912)
+write.csv(SA_2019, file = "SA_2019.csv")
+#2020 
+SA_202001 <- read_csv("PRICE_AND_DEMAND_202001_SA1.csv")
+SA_202002 <- read_csv("PRICE_AND_DEMAND_202002_SA1.csv")
+SA_202003 <- read_csv("PRICE_AND_DEMAND_202003_SA1.csv")
+SA_202004  <- read_csv("PRICE_AND_DEMAND_202004_SA1.csv")
+SA_202005  <- read_csv("PRICE_AND_DEMAND_202005_SA1.csv")
+SA_202006 <- read_csv("PRICE_AND_DEMAND_202006_SA1.csv")
+SA_202007 <- read_csv("PRICE_AND_DEMAND_202007_SA1.csv")
+SA_202008  <- read_csv("PRICE_AND_DEMAND_202008_SA1.csv")
+SA_202009  <- read_csv("PRICE_AND_DEMAND_202009_SA1.csv")
+SA_202010  <- read_csv("PRICE_AND_DEMAND_202010_SA1.csv")
+SA_202011  <- read_csv("PRICE_AND_DEMAND_202011_SA1.csv")
+SA_202012  <- read_csv("PRICE_AND_DEMAND_202012_SA1.csv")
+
+
+
+SA_2020 <- bind_rows(SA_202001,
+                     SA_202002,
+                     SA_202003,
+                     SA_202004, 
+                     SA_202005, 
+                     SA_202006,
+                     SA_202007,
+                     SA_202008, 
+                     SA_202009, 
+                     SA_202010, 
+                     SA_202011, 
+                     SA_202012)
+write.csv(SA_2020, file = "SA_2020.csv")
+#2021
+SA_202101 <- read_csv("PRICE_AND_DEMAND_202101_SA1.csv")
+SA_202102 <- read_csv("PRICE_AND_DEMAND_202102_SA1.csv")
+SA_202103 <- read_csv("PRICE_AND_DEMAND_202103_SA1.csv")
+SA_202104  <- read_csv("PRICE_AND_DEMAND_202104_SA1.csv")
+SA_202105  <- read_csv("PRICE_AND_DEMAND_202105_SA1.csv")
+SA_202106 <- read_csv("PRICE_AND_DEMAND_202106_SA1.csv")
+
+
+SA_2021_JUNE <- bind_rows(SA_202101,
+                           SA_202102,
+                           SA_202103,
+                           SA_202104, 
+                           SA_202105, 
+                           SA_202106)
+write.csv(SA_2021_JUNE, file = "SA_2021_JUNE.csv")
+
+SA_2015_JULY <- read_csv("SA_2015_JUNE.csv")
+SA_2016 <- read_csv("SA_2016.csv")
+SA_2017 <- read_csv("SA_2017.csv")
+SA_2018 <- read_csv("SA_2018.csv")
+SA_2019 <- read_csv("SA_2019.csv")
+SA_2020 <- read_csv("SA_2020.csv")
+SA_2021_JUNE <- read_csv("SA_2021_JUNE.csv")
+##MERGING SA 2015-2021
+SA_PMD <- bind_rows( SA_2015_JULY, SA_2016, SA_2017, SA_2018, SA_2019, SA_2020, SA_2021_JUNE)
+write.csv(SA_PMD, file = "SA_PMD.csv")
+write.csv(NSW_PMD, file = "NSW_PMD.csv")
+
+#======================================================
+# STEP 3: CLEAN UP AND ADD DATA TO PREPARE FOR ANALYSIS
+#======================================================
+# Inspect the new table that has been created
+NSW_PMD <- read_csv("NSW_PMD.csv")
+SA_PMD <- read_csv("SA_PMD.csv")
+colnames(NSW_PMD)  #List of column names
+NSW_PMD <- NSW_PMD %>%  
+  select(c("REGION", "SETTLEMENTDATE", "TOTALDEMAND", "RRP"))
+colnames(SA_PMD)  #List of column names
+SA_PMD <- SA_PMD %>%  
+  select(c("REGION", "SETTLEMENTDATE", "TOTALDEMAND", "RRP"))
+
+nrow(NSW_PMD)  #How many rows are in data frame?
+dim(NSW_PMD)  #Dimensions of the data frame?
+head(NSW_PMD)  #See the first 6 rows of data frame.  Also tail(all_trips)
+str(NSW_PMD)  #See list of columns and data types (numeric, character, etc)
+NSW_PMD <- na.omit(NSW_PMD)
+summary(NSW_PMD)  #Statistical summary of data. Mainly for numerics
+summary(SA_PMD)
+
+NSW_PMD$SETTLEMENTDATE <- as.Date(NSW_PMD$SETTLEMENTDATE, "%d/%m/%Y ")
+summary(NSW_PMD,)
+
+
+write.csv(NSW_PMD, file = "NSW_PMD.csv")
+write.csv(SA_PMD, file = "SA_PMD.csv")
+
   
   ```{r}
 combined_data <- merge(sleep_day, daily_activity, by="Id", all.x =TRUE)
