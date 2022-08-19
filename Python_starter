@@ -1,0 +1,39 @@
+import numpy as np
+
+class family():
+    def __init__ (self, second_name = 'Wick', first_name = 'Johnathan'):
+        self.my_family_name = second_name
+        self.my_first_name = first_name
+        self.my_fathers_name = 'unknown'
+        self.my_mothers_name = 'unknown'
+        self.my_sisters_name = 'unknown'
+        self.my_brothers_name = 'unknown'
+    
+    def return_my_name(self):
+        return ({'my first name': self.my_first_name, 'my family name' : self.my_family_name})
+    
+    def add_parents_names(self, fathers_first_name, mothers_first_name):
+        self.my_fathers_name = fathers_first_name
+        self.my_mothers_name = mothers_first_name
+        
+        
+    def add_siblings_names(self, brothers_first_name, sisters_first_name):
+        self.my_sisters_name = sisters_first_name 
+        self.my_brothers_name = brothers_first_name  
+        
+    def return_all_first_names(self): 
+        return (self.my_first_name, self.my_mothers_name, self.my_fathers_name, self.my_sisters_name, self.my_brothers_name)
+    
+    def delete_family_member(self, first_name):
+        if self.my_fathers_name == first_name :
+            self.my_fathers_name = 'unknown'
+        elif self.my_mothers_name == first_name :
+            self.my_mothers_name = 'unknown'
+        elif self.my_sisters_name == first_name :
+            self.my_sisters_name ='unknown'
+        elif self.my_brothers_name == first_name :
+            self.my_brothers_name = 'unknown'
+        else:
+            first_name == self.my_first_name 
+            
+#####
