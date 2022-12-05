@@ -146,3 +146,13 @@ WHERE cd.members.firstname='David'
 AND cd.members.surname='Farrell';
 
 
+Begin/rollback/commit- Datetime
+Begin Transaction;
+	
+UPDATE [GGNSW_TEST].[dbo].[vBoCsActivity] SET [UserField7] = CAST('2022-11-22' AS datetime)
+ WHERE [ID] = '200222' AND ActivityType = 'CSCF'
+
+commit Transaction
+
+
+
